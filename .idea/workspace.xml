@@ -36,14 +36,14 @@
       <file leaf-file-name="application.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.99264705">
-              <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.61764705">
+              <caret line="106" column="6" selection-start-line="106" selection-start-column="6" selection-end-line="106" selection-end-column="6" />
               <folding>
-                <marker date="1428248609000" expanded="true" signature="2102:2316" placeholder="..." />
-                <marker date="1428248609000" expanded="true" signature="2436:2575" placeholder="..." />
-                <marker date="1428248609000" expanded="true" signature="2477:2526" placeholder="..." />
-                <marker date="1428248609000" expanded="true" signature="2779:2830" placeholder="..." />
-                <marker date="1428248609000" expanded="true" signature="2898:2938" placeholder="..." />
+                <marker date="1428255467000" expanded="true" signature="2346:2568" placeholder="..." />
+                <marker date="1428255467000" expanded="true" signature="2702:2851" placeholder="..." />
+                <marker date="1428255467000" expanded="true" signature="2745:2798" placeholder="..." />
+                <marker date="1428255467000" expanded="true" signature="3334:3474" placeholder="..." />
+                <marker date="1428255467000" expanded="true" signature="3550:3594" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -129,6 +129,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="JavaScriptLanguageLevel" value="JSX" />
+    <property name="SearchEverywhereHistoryKey" value="onCommentSubmit&#9;null&#9;null" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -218,14 +219,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.99264705">
-          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.61764705">
+          <caret line="106" column="6" selection-start-line="106" selection-start-column="6" selection-end-line="106" selection-end-column="6" />
           <folding>
-            <marker date="1428248609000" expanded="true" signature="2102:2316" placeholder="..." />
-            <marker date="1428248609000" expanded="true" signature="2436:2575" placeholder="..." />
-            <marker date="1428248609000" expanded="true" signature="2477:2526" placeholder="..." />
-            <marker date="1428248609000" expanded="true" signature="2779:2830" placeholder="..." />
-            <marker date="1428248609000" expanded="true" signature="2898:2938" placeholder="..." />
+            <marker date="1428255467000" expanded="true" signature="2346:2568" placeholder="..." />
+            <marker date="1428255467000" expanded="true" signature="2702:2851" placeholder="..." />
+            <marker date="1428255467000" expanded="true" signature="2745:2798" placeholder="..." />
+            <marker date="1428255467000" expanded="true" signature="3334:3474" placeholder="..." />
+            <marker date="1428255467000" expanded="true" signature="3550:3594" placeholder="..." />
           </folding>
         </state>
       </provider>

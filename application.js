@@ -36,6 +36,7 @@
         success: function(tweet) {
           this.setState({data: tweet});
           // Old fashioned callback to rerender the page
+          console.log('this', this);
           this.loadCommentsFromServer();
         }.bind(this),
         error: function(xhr, status, err) {
@@ -47,7 +48,7 @@
       return (
           <div className="commentBox">
             <h1>Comments</h1>
-            <CommentList reRender={this.loadCommentsFromServer} data={this.state.data}  />
+            <CommentList data={this.state.data} reRender={this.loadCommentsFromServer} />
             <CommentForm onCommentSubmit={this.handleCommentSubmit} />
           </div>
       )
@@ -91,36 +92,6 @@
     }
   });
 
-  var CommentList = React.createClass({
-    handleDeleteEvent: function(id) {
-      $.ajax({
-        url: "http://localhost:3000/tweets/" + id,
-        type: "DELETE",
-        success: function() {
-
-          console.log(this.props);
-        }.bind(this)
-      });
-    },
-    render: function() {
-      var _this = this;
-      
-      var commentNodes = this.props.data.map(function (comment){
-        return (
-            <Comment author={comment.user_handle}>
-              {comment.content}
-              <DeleteForm id={comment.id} onDeleteSubmit={_this.handleDeleteEvent}/>
-            </Comment>
-        );
-      });
-      return (
-          <div className="commentList">
-            {commentNodes}
-          </div>
-      );
-    }
-  });
-
   var DeleteForm = React.createClass({
     handleSubmit: function(event) {
       event.preventDefault();
@@ -133,6 +104,34 @@
           <form className="deleteForm" onSubmit={this.handleSubmit}>
             <input id={this.props.id} type="submit" value="DELETE"  />
           </form>
+      );
+    }
+  });
+
+  var CommentList = React.createClass({
+    handleDeleteEvent: function(id) {
+      $.ajax({
+        url: "http://localhost:3000/tweets/" + id,
+        type: "DELETE",
+        success: function() {
+          this.props.reRender();
+        }.bind(this)
+      });
+    },
+    render: function() {
+      var _this = this;
+      var commentNodes = this.props.data.map(function (comment){
+        return (
+            <Comment author={comment.user_handle}>
+              {comment.content}
+              <DeleteForm id={comment.id} onDeleteSubmit={_this.handleDeleteEvent} />
+            </Comment>
+        );
+      });
+      return (
+          <div className="commentList">
+            {commentNodes}
+          </div>
       );
     }
   });

@@ -28,6 +28,8 @@
       // Render the comment without waiting for a response from the server
       // For optimizing
       //-------
+      //var _this = this;
+
       $.ajax({
         url: this.props.url,
         dataType: 'json',
@@ -36,7 +38,7 @@
         success: function(tweet) {
           this.setState({data: tweet});
           // Old fashioned callback to rerender the page
-          console.log('this', this);
+          //console.log('this', this);
           this.loadCommentsFromServer();
         }.bind(this),
         error: function(xhr, status, err) {
@@ -120,7 +122,9 @@
     },
     render: function() {
       var _this = this;
-      var commentNodes = this.props.data.map(function (comment){
+      console.dir(this.props.data);
+      //If a Arraylike the do this - if a single object do something else
+      var commentNodes = this.props.data.map(function(comment) {
         return (
             <Comment author={comment.user_handle}>
               {comment.content}

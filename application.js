@@ -3,7 +3,7 @@ var CommentBox = React.createClass({
     $.ajax({
       url: this.props.url,
       success: function(tweet) {
-        console.log('data', tweet)
+        //console.log('data', tweet)
         this.setState({data: tweet});
       }.bind(this),
       error: function(xhr, status, err) {
@@ -16,25 +16,58 @@ var CommentBox = React.createClass({
   },
   componentDidMount: function () {
     this.loadCommentsFromServer();
+    //console.log('componentDidMount', this);
     // This will send a call to the sever to get data at a timeout interval set on the dom node
     //setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  },
+  handleCommentSubmit: function(comment) {
+    // Render the comment without waiting for a response from the server
+    // For optimizing
+    //-------
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      type: 'POST',
+      data: comment,
+      success: function(tweet) {
+        this.setState({data: tweet});
+        this.loadCommentsFromServer();
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   },
   render: function() {
     return (
         <div className="commentBox">
           <h1>Comments</h1>
-          <CommentList data={this.state.data.content} />
-          <CommentForm />
+          <CommentList data={this.state.data} />
+          <CommentForm onCommentSubmit={this.handleCommentSubmit} />
         </div>
     )
   }
 });
 
 var CommentForm = React.createClass({
+  handleSubmit: function(event) {
+    event.preventDefault();
+    var user = React.findDOMNode(this.refs.user_handle).value.trim();
+    var content = React.findDOMNode(this.refs.content).value.trim();
+    if (!user || !content) return;
+  //  Send DATA to sever
+    this.props.onCommentSubmit({user_handle: user, content:content});
+    React.findDOMNode(this.refs.user_handle).value = '';
+    React.findDOMNode(this.refs.content).value = '';
+    return;
+  },
   render: function() {
     return (
-      React.createElement('form', { className: "commentForm"}
-      )
+        <form className="commentForm" onSubmit={this.handleSubmit}>
+          <input type="text" placeholder="Your name" ref="user_handle" />
+          <input type="text" placeholder="Say something..." ref="content" />
+          <input type="submit" value="Post" />
+        </form>
     );
   }
 });
@@ -55,10 +88,16 @@ var Comment = React.createClass({
 
 var CommentList = React.createClass({
   render: function() {
+    var commentNodes = this.props.data.map(function (comment){
+      return (
+          <Comment author={comment.user_handle}>
+            {comment.content}
+          </Comment>
+      );
+    });
     return (
         <div className="commentList">
-          <Comment author="Pete Hunt">This is one comment</Comment>
-          <Comment author="Jordan Walke">This is *another* comment</Comment>
+          {commentNodes}
         </div>
     );
   }

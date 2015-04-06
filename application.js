@@ -7,7 +7,6 @@
       $.ajax({
         url: this.props.url,
         success: function(tweet) {
-          //console.log('data', tweet)
           this.setState({data: tweet});
         }.bind(this),
         error: function(xhr, status, err) {
@@ -25,22 +24,13 @@
       //setInterval(this.loadCommentsFromServer, this.props.pollInterval);
     },
     handleCommentSubmit: function(comment) {
-      // Set the State of the comment without waiting for a response from the server
-      // For optimizing
-      //-------
-      var comments = this.state.data;
-      var newComments = comments.concat([comment]);
-      this.setState({data: newComments});
-
       $.ajax({
         url: this.props.url,
         dataType: 'json',
         type: 'POST',
         data: comment,
         success: function(tweet) {
-          this.setState({data: tweet});
           // Old fashioned callback to rerender the page
-          //console.log('this', this);
           this.loadCommentsFromServer();
         }.bind(this),
         error: function(xhr, status, err) {
@@ -100,7 +90,6 @@
     handleSubmit: function(event) {
       event.preventDefault();
       var id = this.props.id;
-      //console.dir('props', this.props)
       this.props.onDeleteSubmit(id);
     },
     render: function() {
@@ -124,7 +113,6 @@
     },
     render: function() {
       var _this = this;
-      console.dir(this.props.data);
       //If a Arraylike the do this - if a single object do something else
       var commentNodes = this.props.data.map(function(comment) {
         return (

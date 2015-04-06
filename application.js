@@ -25,10 +25,12 @@
       //setInterval(this.loadCommentsFromServer, this.props.pollInterval);
     },
     handleCommentSubmit: function(comment) {
-      // Render the comment without waiting for a response from the server
+      // Set the State of the comment without waiting for a response from the server
       // For optimizing
       //-------
-      //var _this = this;
+      var comments = this.state.data;
+      var newComments = comments.concat([comment]);
+      this.setState({data: newComments});
 
       $.ajax({
         url: this.props.url,
@@ -140,22 +142,9 @@
     }
   });
 
-
-  //var App = (
-  //    React.createElement(CommentBox, null),
-  //        React.createElement(Comment, null,
-  //            React.createElement(CommentList, null)
-  //        )
-  //);
-
-
   return React.render(
       <CommentBox url="http://localhost:3000/tweets" pollInterval={2000} /> ,
     document.getElementById('content')
   );
 
-//React.render(
-//    React.createElement(CommentForm, null),
-//    document.getElementById('content')
-//);
 })();

@@ -1,5 +1,6 @@
 (function() {
 
+  "use strict";
 
   var CommentBox = React.createClass({
     loadCommentsFromServer: function() {

@@ -4,7 +4,6 @@
 
   var CommentBox = React.createClass({
     loadCommentsFromServer: function() {
-
       $.ajax({
         url: this.props.url,
         success: function(tweet) {
@@ -22,7 +21,7 @@
       this.loadCommentsFromServer();
       //console.log('componentDidMount', this);
       // This will send a call to the sever to get data at a timeout interval set on the dom node
-      //setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+      // setInterval(this.loadCommentsFromServer, this.props.pollInterval);
     },
     handleCommentSubmit: function(comment) {
       $.ajax({
@@ -31,7 +30,6 @@
         type: 'POST',
         data: comment,
         success: function(tweet) {
-          // Old fashioned callback to rerender the page
           this.loadCommentsFromServer();
         }.bind(this),
         error: function(xhr, status, err) {
